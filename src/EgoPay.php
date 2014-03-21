@@ -25,7 +25,9 @@
 
 			STATUS_SUCCESS = 'acknowledged',
 			STATUS_NOT_AUTH = 'not_authorized',
-			STATUS_PAY_FAILDED = 'not_acknowledged';
+			STATUS_PAY_FAILDED = 'not_acknowledged',
+			STATUS_REGISTRED = 'registered',
+			STATUS_AUTH = 'authorized';
 
 		private $client,
 			$shopId;
@@ -79,7 +81,7 @@
 		* Register order in EgoPay
 		* @return stdClass
 		*/
-		public function registe(OrderInterface $order, CustomerInterface $customer, $urlOk, $urlFault, $currency = 'RUB', $locale = 'RU') {
+		public function register(OrderInterface $order, CustomerInterface $customer, $urlOk, $urlFault, $currency = 'RUB', $locale = 'RU') {
 
 			return $this->client->register_online(
 				array(
@@ -155,11 +157,15 @@
 
 
 		public function getErrorText($code) {
-			return isset(static::$errorTexts[$code]) ? static::$errorTexts[$code] : 'Неизвестная ошибка сервиса';
+			return isset(static::$errorTexts[$code])
+				? static::$errorTexts[$code]
+				: 'Неизвестная ошибка сервиса';
 		}
 
 		public function getStatusText($code) {
-			return isset(static::$statues[$code]) ? static::$statues[$code] : 'Неизвестный статус';
+			return isset(static::$statues[$code])
+				? static::$statues[$code]
+				: 'Неизвестный статус';
 		}
 
 		/**
