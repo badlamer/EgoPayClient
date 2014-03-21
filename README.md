@@ -19,8 +19,6 @@ $client->register($order, $customer, $urlOk, $urlFail, $currency, $locale);
 
 $client->getStatus($order);
 
-
-
-//Все статус
+//Всё
 
 ```
