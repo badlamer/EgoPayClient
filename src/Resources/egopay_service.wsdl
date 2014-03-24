@@ -1,1 +1,473 @@
-<?xml version='1.0' encoding='utf-8' ?><definitions xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:tns="http://www.sirena-travel.ru" xmlns:typens="http://www.sirena-travel.ru" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.sirena-travel.ru"><types><schema elementFormDefault="qualified" targetNamespace="http://www.sirena-travel.ru" xmlns="http://www.w3.org/2001/XMLSchema"><xs:complexType name="PaymentArray"><sequence><element minOccurs="0" maxOccurs="unbounded" type="tns:Payment" name="Payment"/></sequence></xs:complexType><xs:complexType name="get_finished"><xs:sequence><xs:element name="shop_id" type="xs:int"/><xs:element name="start" type="xs:dateTime"/><xs:element name="stop" type="xs:dateTime"/></xs:sequence></xs:complexType><xs:complexType name="OrderItem"><xs:sequence><xs:element name="descr" nillable="true" type="xs:string"/><xs:element name="clearing" nillable="true" type="xs:string"/><xs:element name="amount" nillable="true" type="tns:Amount"/><xs:element name="number" nillable="true" type="xs:string"/><xs:element name="typename" nillable="true" type="xs:string"/><xs:element name="host" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="stringArray"><sequence><element minOccurs="0" maxOccurs="unbounded" type="xs:string" name="string"/></sequence></xs:complexType><xs:complexType name="cancelResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatus"/></xs:sequence></xs:complexType><xs:element name="refundResponse" type="tns:refundResponse"/><xs:complexType name="register_agencyResponse"><xs:sequence><xs:element name="retval" type="tns:OnlineResult"/></xs:sequence></xs:complexType><xs:element name="PaymentArray" type="tns:PaymentArray"/><xs:element name="PostEntry" type="tns:PostEntry"/><xs:complexType name="get_status"><xs:sequence><xs:element name="order" type="tns:OrderID"/></xs:sequence></xs:complexType><xs:complexType name="OnlineResult"><xs:sequence><xs:element name="session" nillable="true" type="xs:string"/><xs:element name="redirect_url" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="OrderItemArray" type="tns:OrderItemArray"/><xs:complexType name="cancel"><xs:sequence><xs:element name="order" type="tns:OrderID"/></xs:sequence></xs:complexType><xs:complexType name="confirmResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatus"/></xs:sequence></xs:complexType><xs:element name="cancel" type="tns:cancel"/><xs:complexType name="OrderStatus"><xs:sequence><xs:element name="status" nillable="true" type="xs:string"/><xs:element name="order" nillable="true" type="tns:OrderID"/><xs:element name="shopref" nillable="true" type="xs:string"/><xs:element name="payments" nillable="true" type="tns:PaymentArray"/><xs:element name="error" nillable="true" type="tns:Error"/></xs:sequence></xs:complexType><xs:element name="OrderInfo" type="tns:OrderInfo"/><xs:element name="get_finishedResponse" type="tns:get_finishedResponse"/><xs:element name="cancelResponse" type="tns:cancelResponse"/><xs:complexType name="Amount"><xs:sequence><xs:element name="currency" nillable="true" type="xs:string"/><xs:element name="amount" nillable="true" type="xs:float"/></xs:sequence></xs:complexType><xs:element name="OnlineResult" type="tns:OnlineResult"/><xs:element name="reject" type="tns:reject"/><xs:complexType name="Document"><xs:sequence><xs:element name="code" nillable="true" type="xs:string"/><xs:element name="holder" nillable="true" type="xs:string"/><xs:element name="number" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="confirm" type="tns:confirm"/><xs:complexType name="confirm"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="payment_id" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="register_agency"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="cost" type="tns:Amount"/><xs:element name="customer" type="tns:CustomerInfo"/><xs:element name="description" type="tns:OrderInfo"/><xs:element name="account" type="tns:DepositInfo"/><xs:element name="postdata" type="tns:PostEntryArray"/></xs:sequence></xs:complexType><xs:element name="get_statusResponse" type="tns:get_statusResponse"/><xs:element name="register_online" type="tns:register_online"/><xs:element name="register_agencyResponse" type="tns:register_agencyResponse"/><xs:element name="OrderStatus" type="tns:OrderStatus"/><xs:element name="Payment" type="tns:Payment"/><xs:complexType name="PostEntryArray"><sequence><element minOccurs="0" maxOccurs="unbounded" type="tns:PostEntry" name="PostEntry"/></sequence></xs:complexType><xs:complexType name="Error"><xs:sequence><xs:element name="category" nillable="true" type="xs:string"/><xs:element name="code" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="OrderItemArray"><sequence><element minOccurs="0" maxOccurs="unbounded" type="tns:OrderItem" name="OrderItem"/></sequence></xs:complexType><xs:complexType name="Payment"><xs:sequence><xs:element name="authorg" nillable="true" type="xs:string"/><xs:element name="authcode" nillable="true" type="xs:string"/><xs:element name="salepoint" nillable="true" type="xs:string"/><xs:element name="clearing" nillable="true" type="xs:string"/><xs:element name="amount" nillable="true" type="tns:Amount"/><xs:element name="doc" nillable="true" type="tns:Document"/><xs:element name="date" nillable="true" type="xs:dateTime"/><xs:element name="type" nillable="true" type="xs:string"/><xs:element name="id" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="OrderInfo"><xs:sequence><xs:element name="items" nillable="true" type="tns:OrderItemArray"/><xs:element name="shopref" nillable="true" type="xs:string"/><xs:element name="paytype" nillable="true" type="xs:string"/><xs:element name="descr" nillable="true" type="xs:string"/><xs:element name="timelimit" nillable="true" type="xs:dateTime"/></xs:sequence></xs:complexType><xs:element name="OrderID" type="tns:OrderID"/><xs:complexType name="get_finishedResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatusArray"/></xs:sequence></xs:complexType><xs:element name="DepositInfo" type="tns:DepositInfo"/><xs:complexType name="reject"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="payment_id" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="OrderStatusArray"><sequence><element minOccurs="0" maxOccurs="unbounded" type="tns:OrderStatus" name="OrderStatus"/></sequence></xs:complexType><xs:element name="register_offline" type="tns:register_offline"/><xs:element name="register_agency" type="tns:register_agency"/><xs:element name="get_finished" type="tns:get_finished"/><xs:complexType name="DepositInfo"><xs:sequence><xs:element name="salepoint" nillable="true" type="xs:string"/><xs:element name="remark" nillable="true" type="xs:string"/><xs:element name="agreement" nillable="true" type="xs:string"/><xs:element name="user" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="Amount" type="tns:Amount"/><xs:element name="CustomerInfo" type="tns:CustomerInfo"/><xs:complexType name="refund"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="payment_id" type="xs:string"/><xs:element name="cost" type="tns:Amount"/><xs:element name="refund_id" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="OrderItem" type="tns:OrderItem"/><xs:complexType name="OrderID"><xs:sequence><xs:element name="shop_id" nillable="true" type="xs:int"/><xs:element name="number" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="OrderStatusArray" type="tns:OrderStatusArray"/><xs:element name="confirmResponse" type="tns:confirmResponse"/><xs:complexType name="register_offline"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="cost" type="tns:Amount"/><xs:element name="customer" type="tns:CustomerInfo"/><xs:element name="description" type="tns:OrderInfo"/></xs:sequence></xs:complexType><xs:complexType name="CustomerInfo"><xs:sequence><xs:element name="id" nillable="true" type="xs:string"/><xs:element name="phone" nillable="true" type="xs:string"/><xs:element name="surname" nillable="true" type="xs:string"/><xs:element name="name" nillable="true" type="xs:string"/><xs:element name="email" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="PostEntry"><xs:sequence><xs:element name="name" nillable="true" type="xs:string"/><xs:element name="value" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="rejectResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatus"/></xs:sequence></xs:complexType><xs:complexType name="OfflineResult"><xs:sequence><xs:element name="orgs" nillable="true" type="tns:stringArray"/><xs:element name="paycode" nillable="true" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="register_onlineResponse" type="tns:register_onlineResponse"/><xs:element name="stringArray" type="tns:stringArray"/><xs:element name="Error" type="tns:Error"/><xs:element name="get_status" type="tns:get_status"/><xs:element name="rejectResponse" type="tns:rejectResponse"/><xs:element name="Document" type="tns:Document"/><xs:element name="refund" type="tns:refund"/><xs:complexType name="register_online"><xs:sequence><xs:element name="order" type="tns:OrderID"/><xs:element name="cost" type="tns:Amount"/><xs:element name="customer" type="tns:CustomerInfo"/><xs:element name="description" type="tns:OrderInfo"/><xs:element name="postdata" type="tns:PostEntryArray"/></xs:sequence></xs:complexType><xs:complexType name="get_statusResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatus"/></xs:sequence></xs:complexType><xs:complexType name="register_onlineResponse"><xs:sequence><xs:element name="retval" type="tns:OnlineResult"/></xs:sequence></xs:complexType><xs:complexType name="refundResponse"><xs:sequence><xs:element name="retval" type="tns:OrderStatus"/></xs:sequence></xs:complexType><xs:element name="OfflineResult" type="tns:OfflineResult"/><xs:element name="register_offlineResponse" type="tns:register_offlineResponse"/><xs:complexType name="register_offlineResponse"><xs:sequence><xs:element name="retval" type="tns:OfflineResult"/></xs:sequence></xs:complexType><xs:element name="PostEntryArray" type="tns:PostEntryArray"/></schema></types><message name="cancel"><part name="cancel" element="tns:cancel"/></message><message name="cancelResponse"><part name="cancelResponse" element="tns:cancelResponse"/></message><message name="confirm"><part name="confirm" element="tns:confirm"/></message><message name="confirmResponse"><part name="confirmResponse" element="tns:confirmResponse"/></message><message name="get_finished"><part name="get_finished" element="tns:get_finished"/></message><message name="get_finishedResponse"><part name="get_finishedResponse" element="tns:get_finishedResponse"/></message><message name="get_status"><part name="get_status" element="tns:get_status"/></message><message name="get_statusResponse"><part name="get_statusResponse" element="tns:get_statusResponse"/></message><message name="refund"><part name="refund" element="tns:refund"/></message><message name="refundResponse"><part name="refundResponse" element="tns:refundResponse"/></message><message name="register_agency"><part name="register_agency" element="tns:register_agency"/></message><message name="register_agencyResponse"><part name="register_agencyResponse" element="tns:register_agencyResponse"/></message><message name="register_offline"><part name="register_offline" element="tns:register_offline"/></message><message name="register_offlineResponse"><part name="register_offlineResponse" element="tns:register_offlineResponse"/></message><message name="register_online"><part name="register_online" element="tns:register_online"/></message><message name="register_onlineResponse"><part name="register_onlineResponse" element="tns:register_onlineResponse"/></message><message name="reject"><part name="reject" element="tns:reject"/></message><message name="rejectResponse"><part name="rejectResponse" element="tns:rejectResponse"/></message><portType name="orderv2"><operation name="cancel" parameterOrder="cancel"><documentation/><input name="cancel" message="tns:cancel"/><output name="cancelResponse" message="tns:cancelResponse"/></operation><operation name="confirm" parameterOrder="confirm"><documentation/><input name="confirm" message="tns:confirm"/><output name="confirmResponse" message="tns:confirmResponse"/></operation><operation name="get_finished" parameterOrder="get_finished"><documentation/><input name="get_finished" message="tns:get_finished"/><output name="get_finishedResponse" message="tns:get_finishedResponse"/></operation><operation name="get_status" parameterOrder="get_status"><documentation/><input name="get_status" message="tns:get_status"/><output name="get_statusResponse" message="tns:get_statusResponse"/></operation><operation name="refund" parameterOrder="refund"><documentation/><input name="refund" message="tns:refund"/><output name="refundResponse" message="tns:refundResponse"/></operation><operation name="register_agency" parameterOrder="register_agency"><documentation/><input name="register_agency" message="tns:register_agency"/><output name="register_agencyResponse" message="tns:register_agencyResponse"/></operation><operation name="register_offline" parameterOrder="register_offline"><documentation/><input name="register_offline" message="tns:register_offline"/><output name="register_offlineResponse" message="tns:register_offlineResponse"/></operation><operation name="register_online" parameterOrder="register_online"><documentation/><input name="register_online" message="tns:register_online"/><output name="register_onlineResponse" message="tns:register_onlineResponse"/></operation><operation name="reject" parameterOrder="reject"><documentation/><input name="reject" message="tns:reject"/><output name="rejectResponse" message="tns:rejectResponse"/></operation></portType><plnk:partnerLinkType name="orderv2"><plnk:role name="orderv2"><plnk:portType name="tns:orderv2"/></plnk:role></plnk:partnerLinkType><binding name="orderv2" type="tns:orderv2"><soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/><operation name="cancel"><soap:operation soapAction="cancel" style="document"/><input name="cancel"><soap:body use="literal"/></input><output name="cancelResponse"><soap:body use="literal"/></output></operation><operation name="confirm"><soap:operation soapAction="confirm" style="document"/><input name="confirm"><soap:body use="literal"/></input><output name="confirmResponse"><soap:body use="literal"/></output></operation><operation name="get_finished"><soap:operation soapAction="get_finished" style="document"/><input name="get_finished"><soap:body use="literal"/></input><output name="get_finishedResponse"><soap:body use="literal"/></output></operation><operation name="get_status"><soap:operation soapAction="get_status" style="document"/><input name="get_status"><soap:body use="literal"/></input><output name="get_statusResponse"><soap:body use="literal"/></output></operation><operation name="refund"><soap:operation soapAction="refund" style="document"/><input name="refund"><soap:body use="literal"/></input><output name="refundResponse"><soap:body use="literal"/></output></operation><operation name="register_agency"><soap:operation soapAction="register_agency" style="document"/><input name="register_agency"><soap:body use="literal"/></input><output name="register_agencyResponse"><soap:body use="literal"/></output></operation><operation name="register_offline"><soap:operation soapAction="register_offline" style="document"/><input name="register_offline"><soap:body use="literal"/></input><output name="register_offlineResponse"><soap:body use="literal"/></output></operation><operation name="register_online"><soap:operation soapAction="register_online" style="document"/><input name="register_online"><soap:body use="literal"/></input><output name="register_onlineResponse"><soap:body use="literal"/></output></operation><operation name="reject"><soap:operation soapAction="reject" style="document"/><input name="reject"><soap:body use="literal"/></input><output name="rejectResponse"><soap:body use="literal"/></output></operation></binding><service name="orderv2"><port name="orderv2" binding="tns:orderv2"><soap:address location="http://localhost/ws/"/></port></service></definitions>
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:tns="http://www.sirena-travel.ru" xmlns:typens="http://www.sirena-travel.ru" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.sirena-travel.ru">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.sirena-travel.ru">
+      <xs:complexType name="PaymentArray">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" type="tns:Payment" name="Payment"/>
+        </sequence>
+      </xs:complexType>
+      <xs:complexType name="get_finished">
+        <xs:sequence>
+          <xs:element name="shop_id" type="xs:int"/>
+          <xs:element name="start" type="xs:dateTime"/>
+          <xs:element name="stop" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderItem">
+        <xs:sequence>
+          <xs:element name="descr" nillable="true" type="xs:string"/>
+          <xs:element name="clearing" nillable="true" type="xs:string"/>
+          <xs:element name="amount" nillable="true" type="tns:Amount"/>
+          <xs:element name="number" nillable="true" type="xs:string"/>
+          <xs:element name="typename" nillable="true" type="xs:string"/>
+          <xs:element name="host" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stringArray">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" type="xs:string" name="string"/>
+        </sequence>
+      </xs:complexType>
+      <xs:complexType name="cancelResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="refundResponse" type="tns:refundResponse"/>
+      <xs:complexType name="register_agencyResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OnlineResult"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PaymentArray" type="tns:PaymentArray"/>
+      <xs:element name="PostEntry" type="tns:PostEntry"/>
+      <xs:complexType name="get_status">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OnlineResult">
+        <xs:sequence>
+          <xs:element name="session" nillable="true" type="xs:string"/>
+          <xs:element name="redirect_url" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderItemArray" type="tns:OrderItemArray"/>
+      <xs:complexType name="cancel">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="confirmResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="cancel" type="tns:cancel"/>
+      <xs:complexType name="OrderStatus">
+        <xs:sequence>
+          <xs:element name="status" nillable="true" type="xs:string"/>
+          <xs:element name="order" nillable="true" type="tns:OrderID"/>
+          <xs:element name="shopref" nillable="true" type="xs:string"/>
+          <xs:element name="payments" nillable="true" type="tns:PaymentArray"/>
+          <xs:element name="error" nillable="true" type="tns:Error"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderInfo" type="tns:OrderInfo"/>
+      <xs:element name="get_finishedResponse" type="tns:get_finishedResponse"/>
+      <xs:element name="cancelResponse" type="tns:cancelResponse"/>
+      <xs:complexType name="Amount">
+        <xs:sequence>
+          <xs:element name="currency" nillable="true" type="xs:string"/>
+          <xs:element name="amount" nillable="true" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OnlineResult" type="tns:OnlineResult"/>
+      <xs:element name="reject" type="tns:reject"/>
+      <xs:complexType name="Document">
+        <xs:sequence>
+          <xs:element name="code" nillable="true" type="xs:string"/>
+          <xs:element name="holder" nillable="true" type="xs:string"/>
+          <xs:element name="number" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="confirm" type="tns:confirm"/>
+      <xs:complexType name="confirm">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="payment_id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="register_agency">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="cost" type="tns:Amount"/>
+          <xs:element name="customer" type="tns:CustomerInfo"/>
+          <xs:element name="description" type="tns:OrderInfo"/>
+          <xs:element name="account" type="tns:DepositInfo"/>
+          <xs:element name="postdata" type="tns:PostEntryArray"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="get_statusResponse" type="tns:get_statusResponse"/>
+      <xs:element name="register_online" type="tns:register_online"/>
+      <xs:element name="register_agencyResponse" type="tns:register_agencyResponse"/>
+      <xs:element name="OrderStatus" type="tns:OrderStatus"/>
+      <xs:element name="Payment" type="tns:Payment"/>
+      <xs:complexType name="PostEntryArray">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" type="tns:PostEntry" name="PostEntry"/>
+        </sequence>
+      </xs:complexType>
+      <xs:complexType name="Error">
+        <xs:sequence>
+          <xs:element name="category" nillable="true" type="xs:string"/>
+          <xs:element name="code" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderItemArray">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" type="tns:OrderItem" name="OrderItem"/>
+        </sequence>
+      </xs:complexType>
+      <xs:complexType name="Payment">
+        <xs:sequence>
+          <xs:element name="authorg" nillable="true" type="xs:string"/>
+          <xs:element name="authcode" nillable="true" type="xs:string"/>
+          <xs:element name="salepoint" nillable="true" type="xs:string"/>
+          <xs:element name="clearing" nillable="true" type="xs:string"/>
+          <xs:element name="amount" nillable="true" type="tns:Amount"/>
+          <xs:element name="doc" nillable="true" type="tns:Document"/>
+          <xs:element name="date" nillable="true" type="xs:dateTime"/>
+          <xs:element name="type" nillable="true" type="xs:string"/>
+          <xs:element name="id" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderInfo">
+        <xs:sequence>
+          <xs:element name="items" nillable="true" type="tns:OrderItemArray"/>
+          <xs:element name="shopref" nillable="true" type="xs:string"/>
+          <xs:element name="paytype" nillable="true" type="xs:string"/>
+          <xs:element name="descr" nillable="true" type="xs:string"/>
+          <xs:element name="timelimit" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderID" type="tns:OrderID"/>
+      <xs:complexType name="get_finishedResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatusArray"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DepositInfo" type="tns:DepositInfo"/>
+      <xs:complexType name="reject">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="payment_id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderStatusArray">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" type="tns:OrderStatus" name="OrderStatus"/>
+        </sequence>
+      </xs:complexType>
+      <xs:element name="register_offline" type="tns:register_offline"/>
+      <xs:element name="register_agency" type="tns:register_agency"/>
+      <xs:element name="get_finished" type="tns:get_finished"/>
+      <xs:complexType name="DepositInfo">
+        <xs:sequence>
+          <xs:element name="salepoint" nillable="true" type="xs:string"/>
+          <xs:element name="remark" nillable="true" type="xs:string"/>
+          <xs:element name="agreement" nillable="true" type="xs:string"/>
+          <xs:element name="user" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Amount" type="tns:Amount"/>
+      <xs:element name="CustomerInfo" type="tns:CustomerInfo"/>
+      <xs:complexType name="refund">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="payment_id" type="xs:string"/>
+          <xs:element name="cost" type="tns:Amount"/>
+          <xs:element name="refund_id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderItem" type="tns:OrderItem"/>
+      <xs:complexType name="OrderID">
+        <xs:sequence>
+          <xs:element name="shop_id" nillable="true" type="xs:int"/>
+          <xs:element name="number" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderStatusArray" type="tns:OrderStatusArray"/>
+      <xs:element name="confirmResponse" type="tns:confirmResponse"/>
+      <xs:complexType name="register_offline">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="cost" type="tns:Amount"/>
+          <xs:element name="customer" type="tns:CustomerInfo"/>
+          <xs:element name="description" type="tns:OrderInfo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CustomerInfo">
+        <xs:sequence>
+          <xs:element name="id" nillable="true" type="xs:string"/>
+          <xs:element name="phone" nillable="true" type="xs:string"/>
+          <xs:element name="surname" nillable="true" type="xs:string"/>
+          <xs:element name="name" nillable="true" type="xs:string"/>
+          <xs:element name="email" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PostEntry">
+        <xs:sequence>
+          <xs:element name="name" nillable="true" type="xs:string"/>
+          <xs:element name="value" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="rejectResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OfflineResult">
+        <xs:sequence>
+          <xs:element name="orgs" nillable="true" type="tns:stringArray"/>
+          <xs:element name="paycode" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="register_onlineResponse" type="tns:register_onlineResponse"/>
+      <xs:element name="stringArray" type="tns:stringArray"/>
+      <xs:element name="Error" type="tns:Error"/>
+      <xs:element name="get_status" type="tns:get_status"/>
+      <xs:element name="rejectResponse" type="tns:rejectResponse"/>
+      <xs:element name="Document" type="tns:Document"/>
+      <xs:element name="refund" type="tns:refund"/>
+      <xs:complexType name="register_online">
+        <xs:sequence>
+          <xs:element name="order" type="tns:OrderID"/>
+          <xs:element name="cost" type="tns:Amount"/>
+          <xs:element name="customer" type="tns:CustomerInfo"/>
+          <xs:element name="description" type="tns:OrderInfo"/>
+          <xs:element name="postdata" type="tns:PostEntryArray"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_statusResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="register_onlineResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OnlineResult"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="refundResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OrderStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OfflineResult" type="tns:OfflineResult"/>
+      <xs:element name="register_offlineResponse" type="tns:register_offlineResponse"/>
+      <xs:complexType name="register_offlineResponse">
+        <xs:sequence>
+          <xs:element name="retval" type="tns:OfflineResult"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PostEntryArray" type="tns:PostEntryArray"/>
+    </schema>
+  </types>
+  <message name="cancel">
+    <part name="cancel" element="tns:cancel"/>
+  </message>
+  <message name="cancelResponse">
+    <part name="cancelResponse" element="tns:cancelResponse"/>
+  </message>
+  <message name="confirm">
+    <part name="confirm" element="tns:confirm"/>
+  </message>
+  <message name="confirmResponse">
+    <part name="confirmResponse" element="tns:confirmResponse"/>
+  </message>
+  <message name="get_finished">
+    <part name="get_finished" element="tns:get_finished"/>
+  </message>
+  <message name="get_finishedResponse">
+    <part name="get_finishedResponse" element="tns:get_finishedResponse"/>
+  </message>
+  <message name="get_status">
+    <part name="get_status" element="tns:get_status"/>
+  </message>
+  <message name="get_statusResponse">
+    <part name="get_statusResponse" element="tns:get_statusResponse"/>
+  </message>
+  <message name="refund">
+    <part name="refund" element="tns:refund"/>
+  </message>
+  <message name="refundResponse">
+    <part name="refundResponse" element="tns:refundResponse"/>
+  </message>
+  <message name="register_agency">
+    <part name="register_agency" element="tns:register_agency"/>
+  </message>
+  <message name="register_agencyResponse">
+    <part name="register_agencyResponse" element="tns:register_agencyResponse"/>
+  </message>
+  <message name="register_offline">
+    <part name="register_offline" element="tns:register_offline"/>
+  </message>
+  <message name="register_offlineResponse">
+    <part name="register_offlineResponse" element="tns:register_offlineResponse"/>
+  </message>
+  <message name="register_online">
+    <part name="register_online" element="tns:register_online"/>
+  </message>
+  <message name="register_onlineResponse">
+    <part name="register_onlineResponse" element="tns:register_onlineResponse"/>
+  </message>
+  <message name="reject">
+    <part name="reject" element="tns:reject"/>
+  </message>
+  <message name="rejectResponse">
+    <part name="rejectResponse" element="tns:rejectResponse"/>
+  </message>
+  <portType name="orderv2">
+    <operation name="cancel" parameterOrder="cancel">
+      <documentation/>
+      <input name="cancel" message="tns:cancel"/>
+      <output name="cancelResponse" message="tns:cancelResponse"/>
+    </operation>
+    <operation name="confirm" parameterOrder="confirm">
+      <documentation/>
+      <input name="confirm" message="tns:confirm"/>
+      <output name="confirmResponse" message="tns:confirmResponse"/>
+    </operation>
+    <operation name="get_finished" parameterOrder="get_finished">
+      <documentation/>
+      <input name="get_finished" message="tns:get_finished"/>
+      <output name="get_finishedResponse" message="tns:get_finishedResponse"/>
+    </operation>
+    <operation name="get_status" parameterOrder="get_status">
+      <documentation/>
+      <input name="get_status" message="tns:get_status"/>
+      <output name="get_statusResponse" message="tns:get_statusResponse"/>
+    </operation>
+    <operation name="refund" parameterOrder="refund">
+      <documentation/>
+      <input name="refund" message="tns:refund"/>
+      <output name="refundResponse" message="tns:refundResponse"/>
+    </operation>
+    <operation name="register_agency" parameterOrder="register_agency">
+      <documentation/>
+      <input name="register_agency" message="tns:register_agency"/>
+      <output name="register_agencyResponse" message="tns:register_agencyResponse"/>
+    </operation>
+    <operation name="register_offline" parameterOrder="register_offline">
+      <documentation/>
+      <input name="register_offline" message="tns:register_offline"/>
+      <output name="register_offlineResponse" message="tns:register_offlineResponse"/>
+    </operation>
+    <operation name="register_online" parameterOrder="register_online">
+      <documentation/>
+      <input name="register_online" message="tns:register_online"/>
+      <output name="register_onlineResponse" message="tns:register_onlineResponse"/>
+    </operation>
+    <operation name="reject" parameterOrder="reject">
+      <documentation/>
+      <input name="reject" message="tns:reject"/>
+      <output name="rejectResponse" message="tns:rejectResponse"/>
+    </operation>
+  </portType>
+  <plnk:partnerLinkType name="orderv2">
+    <plnk:role name="orderv2">
+      <plnk:portType name="tns:orderv2"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <binding name="orderv2" type="tns:orderv2">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="cancel">
+      <soap:operation soapAction="cancel" style="document"/>
+      <input name="cancel">
+        <soap:body use="literal"/>
+      </input>
+      <output name="cancelResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="confirm">
+      <soap:operation soapAction="confirm" style="document"/>
+      <input name="confirm">
+        <soap:body use="literal"/>
+      </input>
+      <output name="confirmResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="get_finished">
+      <soap:operation soapAction="get_finished" style="document"/>
+      <input name="get_finished">
+        <soap:body use="literal"/>
+      </input>
+      <output name="get_finishedResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="get_status">
+      <soap:operation soapAction="get_status" style="document"/>
+      <input name="get_status">
+        <soap:body use="literal"/>
+      </input>
+      <output name="get_statusResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="refund">
+      <soap:operation soapAction="refund" style="document"/>
+      <input name="refund">
+        <soap:body use="literal"/>
+      </input>
+      <output name="refundResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="register_agency">
+      <soap:operation soapAction="register_agency" style="document"/>
+      <input name="register_agency">
+        <soap:body use="literal"/>
+      </input>
+      <output name="register_agencyResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="register_offline">
+      <soap:operation soapAction="register_offline" style="document"/>
+      <input name="register_offline">
+        <soap:body use="literal"/>
+      </input>
+      <output name="register_offlineResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="register_online">
+      <soap:operation soapAction="register_online" style="document"/>
+      <input name="register_online">
+        <soap:body use="literal"/>
+      </input>
+      <output name="register_onlineResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="reject">
+      <soap:operation soapAction="reject" style="document"/>
+      <input name="reject">
+        <soap:body use="literal"/>
+      </input>
+      <output name="rejectResponse">
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="orderv2">
+    <port name="orderv2" binding="tns:orderv2">
+      <soap:address location="http://localhost/ws/"/>
+    </port>
+  </service>
+</definitions>
