@@ -20,9 +20,6 @@
 	final class EgoPay {
 
 		const
-			URL = 'https://secure.sirena-travel.ru/ws/order/v2/',
-			SANDBOX_URL = 'https://secure.sirena2000.ru/ws/order/v2/',
-
 			STATUS_SUCCESS = 'acknowledged',
 			STATUS_NOT_AUTH = 'not_authorized',
 			STATUS_PAY_FAILDED = 'not_acknowledged',
@@ -62,13 +59,13 @@
 		* @param string $password Password for service
 		* @param string $shopId Shop id for every request
 		*/
-		public function __construct($login, $password, $shopId, $sandbox = true) {
+		public function __construct($login, $password, $shopId, $url) {
 			$this->client = new SoapClient(
 				'Resources/egopay_service.wsdl',
 				array(
 					'login' => $login,
 					'password' => $password,
-					'location' => $sandbox ? static::SANDBOX_URL : static::URL,
+					'location' => $url,
 					'exceptions' => true,
 					'trace' => $sandbox
 				)
