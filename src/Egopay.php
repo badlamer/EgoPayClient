@@ -61,7 +61,7 @@
 		*/
 		public function __construct($login, $password, $shopId, $url, $debug = true) {
 			$this->client = new SoapClient(
-				'Resources/egopay_service.wsdl',
+				__DIR__ . DIRECTORY_SEPARATOR . 'Resources/egopay_service.wsdl',
 				array(
 					'login' => $login,
 					'password' => $password,
@@ -80,45 +80,45 @@
 		*/
 		public function register(OrderInterface $order, CustomerInterface $customer, $urlOk, $urlFault, $currency = 'RUB', $locale = 'RU') {
 
-			return $this->client->register_online(
-				array(
-					'order' => array(
-						'shop_id' => $this->getShopId(),
-						'number' => $order->getId()
+			$data = array(
+				'order' => array(
+					'shop_id' => $this->getShopId(),
+					'number' => $order->getId()
+				),
+				'cost' => array(
+					'amount' => $order->getPaymentAmount(),
+					'currency' => $currency
+				),
+				'customer' => array(
+					'id' => $customer->getId(),
+					'name' => (string) $customer->getFullName(),
+					'phone' => (string) $customer->getPhone(),
+					'email' => (string) $customer->getEmail()
+				),
+				'description' => array(
+					'timelimit' => $order->getExpiredTime()
+				),
+				'postdata' => array(
+					array(
+						'name' => 'Language',
+						'value' => $locale
 					),
-					'cost' => array(
-						'amount' => $order->getPaymentAmount(),
-						'currency' => $currency
+					array(
+						'name' => 'ReturnURLOk',
+						'value' => $urlOk
 					),
-					'customer' => array(
-						'id' => $customer->getId(),
-						'name' => (string) $customer->getFullName(),
-						'phone' => (string) $customer->getPhone(),
-						'email' => (string) $customer->getEmail()
+					array(
+						'name' => 'ReturnURLFault',
+						'value' => $urlFault
 					),
-					'description' => array(
-						'timelimit' => $order->getExpiredTime()
-					),
-					'postdata' => array(
-						array(
-							'name' => 'Language',
-							'value' => $locale
-						),
-						array(
-							'name' => 'ReturnURLOk',
-							'value' => $urlOk
-						),
-						array(
-							'name' => 'ReturnURLFault',
-							'value' => $urlFault
-						),
-						array(
-							'name' => 'ChoosenCardType',
-							'value' => 'VI'
-						)
-					),
-				)
+					array(
+						'name' => 'ChoosenCardType',
+						'value' => 'VI'
+					)
+				),
 			);
+
+			return $this->getClient()->register_online($data);
 		}
 
 		/**
@@ -126,7 +126,7 @@
 		* @return stdClass
 		*/
 		public function getStatus(OrderInterface $order) {
-			return $this->client->get_status(
+			return $this->getClient()->get_status(
 				array(
 					'order' => array(
 						'shop_id' => $this->getShopId(),
@@ -141,7 +141,7 @@
 		* @return stdClass
 		*/
 		public function cancelOrder(OrderInterface $order) {
-			return $this->client->cancel(
+			return $this->getClient()->cancel(
 				array(
 					'order' => array(
 						'shop_id' => $this->getShopId(),
@@ -173,18 +173,21 @@
 			return $this->shopId;
 		}
 
-
 		/**
 		*
 		*/
 		public function getLastRequest() {
-			return $this->client->__getLastRequest();
+			return $this->getClient()->__getLastRequest();
 		}
 
 		/**
 		*
 		*/
 		public function getLastResponse() {
-			return $this->client->__getLastResponse();
+			return $this->getClient()->__getLastResponse();
+		}
+
+		private function getClient() {
+			return $this->client;
 		}
 	}
