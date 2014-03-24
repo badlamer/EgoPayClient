@@ -1,5 +1,5 @@
 <?php
-	namespace EgoPay;
+	namespace Egopay;
 
 	use EgoPay\OrderInterface;
 	use EgoPay\CustomerInterface;
