@@ -59,7 +59,7 @@
 		* @param string $password Password for service
 		* @param string $shopId Shop id for every request
 		*/
-		public function __construct($login, $password, $shopId, $url) {
+		public function __construct($login, $password, $shopId, $url, $debug = true) {
 			$this->client = new SoapClient(
 				'Resources/egopay_service.wsdl',
 				array(
@@ -67,7 +67,7 @@
 					'password' => $password,
 					'location' => $url,
 					'exceptions' => true,
-					'trace' => $sandbox
+					'trace' => $debug
 				)
 			);
 
