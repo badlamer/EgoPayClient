@@ -96,7 +96,8 @@
 					'email' => (string) $customer->getEmail()
 				),
 				'description' => array(
-					'timelimit' => $order->getExpiredTime()
+					'timelimit' => $order->getExpiredDate(),
+					'paytype' => 'card'
 				),
 				'postdata' => array(
 					array(
